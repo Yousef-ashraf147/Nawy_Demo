@@ -49,27 +49,61 @@ export default function Navbar() {
   };
 
   // Validation
-  const validate = () => {
-    const newErrors: any = {};
+ // Validation
+const validate = () => {
+  const newErrors: any = {};
 
-    if (!form.name.trim()) newErrors.name = "Name is required.";
-    if (!form.unitnumber.trim()) newErrors.unitnumber = "Unit number is required.";
-    if (!form.project.trim()) newErrors.project = "Project is required.";
+  if (!form.name.trim()) newErrors.name = "Name is required.";
+  if (!form.unitnumber.trim()) newErrors.unitnumber = "Unit number is required.";
+  if (!form.project.trim()) newErrors.project = "Project is required.";
 
-    if (!form.price.trim()) newErrors.price = "Price is required.";
+  // PRICE VALIDATION
+  if (!form.price.trim()) {
+    newErrors.price = "Price is required.";
+  } else {
+    const val = Number(form.price);
+    if (val < 500000) newErrors.price = "Price must be at least 500,000 EGP.";
+    else if (val > 30000000)
+      newErrors.price = "Price cannot exceed 30,000,000 EGP.";
+  }
 
-    if (!form.description.trim()) newErrors.description = "Description is required.";
+  if (!form.description.trim()) newErrors.description = "Description is required.";
 
-    if (!form.bedrooms.trim()) newErrors.bedrooms = "Bedrooms is required.";
-    if (!form.bathrooms.trim()) newErrors.bathrooms = "Bathrooms is required.";
-    if (!form.area.trim()) newErrors.area = "Area is required.";
-    if (!form.location.trim()) newErrors.location = "Location is required.";
+  // BEDROOMS VALIDATION
+  if (!form.bedrooms.trim()) {
+    newErrors.bedrooms = "Bedrooms is required.";
+  } else {
+    const val = Number(form.bedrooms);
+    if (val < 1) newErrors.bedrooms = "Bedrooms must be at least 1.";
+    else if (val > 10) newErrors.bedrooms = "Bedrooms cannot exceed 10.";
+  }
 
-    if (!selectedFile) newErrors.imageurl = "Image is required.";
+  // BATHROOMS VALIDATION
+  if (!form.bathrooms.trim()) {
+    newErrors.bathrooms = "Bathrooms is required.";
+  } else {
+    const val = Number(form.bathrooms);
+    if (val < 1) newErrors.bathrooms = "Bathrooms must be at least 1.";
+    else if (val > 10) newErrors.bathrooms = "Bathrooms cannot exceed 10.";
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  // AREA VALIDATION
+  if (!form.area.trim()) {
+    newErrors.area = "Area is required.";
+  } else {
+    const val = Number(form.area);
+    if (val < 20) newErrors.area = "Area must be at least 20 m².";
+    else if (val > 2000) newErrors.area = "Area cannot exceed 2000 m².";
+  }
+
+  if (!form.location.trim()) newErrors.location = "Location is required.";
+
+  if (!selectedFile) newErrors.imageurl = "Image is required.";
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
 
   // Submit
   const handleSubmit = async () => {
