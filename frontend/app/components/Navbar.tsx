@@ -135,9 +135,11 @@ export default function Navbar() {
           {/* ADD FORM */}
           <Dialog>
             <DialogTrigger asChild>
-              <button className="hidden md:block font-medium px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition">
+              <Button
+              variant="outline"
+              className="font-medium px-3 py-2 text-sm md:px-4 md:py-2 md:text-base rounded-full border border-gray-300 hover:bg-gray-100 transition">
                 Add Your Apartment
-              </button>
+              </Button>
             </DialogTrigger>
 
             <DialogContent className="max-w-xl max-h-[80vh] overflow-y-auto">
