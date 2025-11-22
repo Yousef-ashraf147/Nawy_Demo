@@ -25,30 +25,25 @@ export default function Navbar() {
     project: "",
     price: "",
     description: "",
+    bedrooms: "",
+    bathrooms: "",
+    area: "",
+    location: "",
     imageurl: "",
   });
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const [errors, setErrors] = useState({
-    name: "",
-    unitnumber: "",
-    project: "",
-    price: "",
-    description: "",
-    imageurl: "",
-  });
+  const [errors, setErrors] = useState<any>({});
 
-  // success dialog state
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
 
-  // Handle image input
+  // Handle image
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setSelectedFile(file);
-
     const preview = URL.createObjectURL(file);
     setForm((prev) => ({ ...prev, imageurl: preview }));
   };
@@ -62,11 +57,13 @@ export default function Navbar() {
     if (!form.project.trim()) newErrors.project = "Project is required.";
 
     if (!form.price.trim()) newErrors.price = "Price is required.";
-    else if (Number(form.price) <= 0)
-      newErrors.price = "Price must be greater than 0.";
 
-    if (!form.description.trim())
-      newErrors.description = "Description is required.";
+    if (!form.description.trim()) newErrors.description = "Description is required.";
+
+    if (!form.bedrooms.trim()) newErrors.bedrooms = "Bedrooms is required.";
+    if (!form.bathrooms.trim()) newErrors.bathrooms = "Bathrooms is required.";
+    if (!form.area.trim()) newErrors.area = "Area is required.";
+    if (!form.location.trim()) newErrors.location = "Location is required.";
 
     if (!selectedFile) newErrors.imageurl = "Image is required.";
 
@@ -74,7 +71,7 @@ export default function Navbar() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit Form
+  // Submit
   const handleSubmit = async () => {
     if (!validate()) return;
 
@@ -84,6 +81,10 @@ export default function Navbar() {
     formData.append("project", form.project);
     formData.append("price", form.price);
     formData.append("description", form.description);
+    formData.append("bedrooms", form.bedrooms);
+    formData.append("bathrooms", form.bathrooms);
+    formData.append("area", form.area);
+    formData.append("location", form.location);
 
     if (selectedFile) {
       formData.append("image", selectedFile);
@@ -99,16 +100,18 @@ export default function Navbar() {
       return;
     }
 
-    // Show success dialog
     setSuccessDialogOpen(true);
 
-    // Reset form inputs
     setForm({
       name: "",
       unitnumber: "",
       project: "",
       price: "",
       description: "",
+      bedrooms: "",
+      bathrooms: "",
+      area: "",
+      location: "",
       imageurl: "",
     });
     setSelectedFile(null);
@@ -117,7 +120,6 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white border-b shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -129,13 +131,11 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Right Side */}
         <div className="flex items-center gap-4">
-
-          {/* ADD APARTMENT FORM DIALOG */}
+          {/* ADD FORM */}
           <Dialog>
             <DialogTrigger asChild>
-<button className="hidden md:block font-medium px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition">
+              <button className="hidden md:block font-medium px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition">
                 Add Your Apartment
               </button>
             </DialogTrigger>
@@ -148,95 +148,104 @@ export default function Navbar() {
               </DialogHeader>
 
               <div className="space-y-4">
-
                 {/* NAME */}
-                <div>
-                  <Label>Name</Label>
+                <Field label="Name" error={errors.name}>
                   <Input
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={errors.name ? "border-red-500" : ""}
                   />
-                  {errors.name && (
-                    <p className="text-red-500 text-sm">{errors.name}</p>
-                  )}
-                </div>
+                </Field>
 
-                {/* UNIT NUMBER */}
-                <div>
-                  <Label>Unit Number</Label>
+                {/* UNIT */}
+                <Field label="Unit Number" error={errors.unitnumber}>
                   <Input
                     value={form.unitnumber}
                     onChange={(e) =>
                       setForm({ ...form, unitnumber: e.target.value })
                     }
-                    className={errors.unitnumber ? "border-red-500" : ""}
                   />
-                  {errors.unitnumber && (
-                    <p className="text-red-500 text-sm">{errors.unitnumber}</p>
-                  )}
-                </div>
+                </Field>
 
                 {/* PROJECT */}
-                <div>
-                  <Label>Project</Label>
+                <Field label="Project" error={errors.project}>
                   <Input
                     value={form.project}
                     onChange={(e) =>
                       setForm({ ...form, project: e.target.value })
                     }
-                    className={errors.project ? "border-red-500" : ""}
                   />
-                  {errors.project && (
-                    <p className="text-red-500 text-sm">{errors.project}</p>
-                  )}
-                </div>
+                </Field>
 
                 {/* PRICE */}
-                <div>
-                  <Label>Price (EGP)</Label>
+                <Field label="Price (EGP)" error={errors.price}>
                   <Input
                     type="number"
                     value={form.price}
                     onChange={(e) =>
                       setForm({ ...form, price: e.target.value })
                     }
-                    className={errors.price ? "border-red-500" : ""}
                   />
-                  {errors.price && (
-                    <p className="text-red-500 text-sm">{errors.price}</p>
-                  )}
-                </div>
+                </Field>
+
+                {/* BEDROOMS */}
+                <Field label="Bedrooms" error={errors.bedrooms}>
+                  <Input
+                    type="number"
+                    value={form.bedrooms}
+                    onChange={(e) =>
+                      setForm({ ...form, bedrooms: e.target.value })
+                    }
+                  />
+                </Field>
+
+                {/* BATHROOMS */}
+                <Field label="Bathrooms" error={errors.bathrooms}>
+                  <Input
+                    type="number"
+                    value={form.bathrooms}
+                    onChange={(e) =>
+                      setForm({ ...form, bathrooms: e.target.value })
+                    }
+                  />
+                </Field>
+
+                {/* AREA */}
+                <Field label="Area (m²)" error={errors.area}>
+                  <Input
+                    type="number"
+                    value={form.area}
+                    onChange={(e) =>
+                      setForm({ ...form, area: e.target.value })
+                    }
+                  />
+                </Field>
+
+                {/* LOCATION */}
+                <Field label="Location" error={errors.location}>
+                  <Input
+                    value={form.location}
+                    onChange={(e) =>
+                      setForm({ ...form, location: e.target.value })
+                    }
+                  />
+                </Field>
 
                 {/* DESCRIPTION */}
-                <div>
-                  <Label>Description</Label>
+                <Field label="Description" error={errors.description}>
                   <Textarea
                     value={form.description}
                     onChange={(e) =>
                       setForm({ ...form, description: e.target.value })
                     }
-                    className={errors.description ? "border-red-500" : ""}
                   />
-                  {errors.description && (
-                    <p className="text-red-500 text-sm">{errors.description}</p>
-                  )}
-                </div>
+                </Field>
 
                 {/* IMAGE */}
-                <div>
-                  <Label>Image</Label>
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className={errors.imageurl ? "border-red-500" : ""}
-                  />
-                  {errors.imageurl && (
-                    <p className="text-red-500 text-sm">{errors.imageurl}</p>
-                  )}
-                </div>
+                <Field label="Image" error={errors.imageurl}>
+                  <Input type="file" accept="image/*" onChange={handleImageUpload} />
+                </Field>
 
+                {/* PREVIEW */}
                 {form.imageurl && (
                   <img
                     src={form.imageurl}
@@ -251,7 +260,7 @@ export default function Navbar() {
             </DialogContent>
           </Dialog>
 
-          {/* SUCCESS CONFIRMATION DIALOG */}
+          {/* SUCCESS DIALOG */}
           <Dialog open={successDialogOpen} onOpenChange={setSuccessDialogOpen}>
             <DialogContent className="max-w-md text-center">
               <DialogHeader>
@@ -275,9 +284,26 @@ export default function Navbar() {
               </Button>
             </DialogContent>
           </Dialog>
-
         </div>
       </div>
     </nav>
+  );
+}
+
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <Label>{label}</Label>
+      {children}
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+    </div>
   );
 }
