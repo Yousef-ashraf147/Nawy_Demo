@@ -1,14 +1,15 @@
-import { pool } from "./database";
+import { pool } from "../config/database";
 
 export async function ensureTablesExist() {
   const query = `
     CREATE TABLE IF NOT EXISTS apartments (
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      unitNumber VARCHAR(255) NOT NULL,
+      unitnumber VARCHAR(255) NOT NULL,
       project VARCHAR(255) NOT NULL,
       price INTEGER NOT NULL,
-      description TEXT
+      description TEXT,
+      imageurl TEXT NOT NULL
     );
   `;
 

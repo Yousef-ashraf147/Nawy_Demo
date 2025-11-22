@@ -5,4 +5,5 @@ export interface Apartment {
   project: string;
   price: number;
   description: string;
+  imageUrl: string;
 }

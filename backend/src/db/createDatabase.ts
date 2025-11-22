@@ -11,7 +11,7 @@ export async function ensureDatabaseExists() {
 
   await client.connect();
 
-  const dbName = "apartmentsdb";
+  const dbName = "apartmentsdb1";
 
   const result = await client.query(
     `SELECT 1 FROM pg_database WHERE datname = $1`,
