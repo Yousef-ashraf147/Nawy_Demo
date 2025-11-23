@@ -30,6 +30,7 @@ interface Apartment {
   date_posted: string; 
 }
 
+
 export default function HomePage() {
   const [apartments, setApartments] = useState<Apartment[]>([]);
   const [filtered, setFiltered] = useState<Apartment[]>([]);

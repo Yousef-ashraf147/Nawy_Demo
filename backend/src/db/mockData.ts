@@ -33,7 +33,7 @@ export async function seedMockData() {
       bathrooms: 1,
       area: 145,
       location: "Mountain View iCity, New Cairo",
-      date_posted: "2025-10-12T12:00:00Z",
+      date_posted: "2025-11-22T12:00:00Z",
     },
     {
       name: "Tijan Maadi",
@@ -61,7 +61,7 @@ export async function seedMockData() {
       bathrooms: 1,
       area: 140,
       location: "Madinaty, New Cairo",
-      date_posted: "2025-11-22T14:00:00Z",
+      date_posted: "2025-07-14T14:00:00Z",
     },
     {
       name: "Sodic Eastown",
