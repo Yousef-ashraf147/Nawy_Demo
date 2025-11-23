@@ -17,6 +17,7 @@ Features:
 - Pagination: Navigate through pages of apartment listings.
 - Add New Apartments: A form in the navbar allows adding apartments with image upload and image preview before submission.
 - Date Posted: Each apartment includes a date_posted field, with a “New” badge for units added within the last seven days.
+- Project Addition to filters: When a project is add , it is directly added to the filter by project.
 - Mobile Responsive: The frontend is designed to be responsive across mobile and desktop.
 
 Backend:

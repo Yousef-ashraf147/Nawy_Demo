@@ -73,7 +73,7 @@ const validate = () => {
   } else {
     const val = Number(form.bedrooms);
     if (val < 1) newErrors.bedrooms = "Bedrooms must be at least 1.";
-    else if (val > 10) newErrors.bedrooms = "Bedrooms cannot exceed 10.";
+    else if (val > 4) newErrors.bedrooms = "Bedrooms cannot exceed 4.";
   }
 
   if (!form.bathrooms.trim()) {
@@ -81,7 +81,7 @@ const validate = () => {
   } else {
     const val = Number(form.bathrooms);
     if (val < 1) newErrors.bathrooms = "Bathrooms must be at least 1.";
-    else if (val > 10) newErrors.bathrooms = "Bathrooms cannot exceed 10.";
+    else if (val > 4) newErrors.bathrooms = "Bathrooms cannot exceed 4.";
   }
 
   if (!form.area.trim()) {
