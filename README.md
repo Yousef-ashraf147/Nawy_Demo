@@ -1,48 +1,92 @@
 1. Build and Start the App with Docker
-Run the following command to build and start the application using Docker Compose: docker-compose up --build
-This will build the necessary images for your app and bring up the required containers, including the database.
+   Run the following command to build and start the entire application using Docker Compose:
+
+   - docker-compose up --build
+     This command builds the frontend, backend, and database images and starts all containers.
 
 Project Overview
-This application is designed to manage apartments and projects, providing functionalities such as:
+This project is a full-stack apartment listing application. It provides the ability to view, search, filter, sort, and add apartments. The system includes a backend API built with Node.js, Express, and PostgreSQL, and a frontend built with Next.js and React. Both components are containerized and run together using Docker.
 
-Apartment Management: You can add, search, and view apartments.
+Features:
 
-Project Management: Filter apartments by project and manage apartment data based on project selection.
+- Apartment Search: Search apartments by name, unit number, or project name.
+- Project Filter: Filter apartments by specific project.
+- Bedrooms and Bathrooms Filters: Filter apartments based on the selected number of rooms.
+- Price Range Filter: Adjust a slider to set minimum and maximum price.
+- Sorting: Sort apartments by price (ascending or descending), by area (ascending or descending), or by date (newest or oldest).
+- Pagination: Navigate through pages of apartment listings.
+- Add New Apartments: A form in the navbar allows adding apartments with image upload and image preview before submission.
+- Date Posted: Each apartment includes a date_posted field, with a “New” badge for units added within the last seven days.
+- Mobile Responsive: The frontend is designed to be responsive across mobile and desktop.
 
-Features
-Apartment Search: Search for apartments by ID or name.
+Backend:
 
-Project Filter: Filter apartments based on a specific project.
+- The backend is an Express server that exposes REST APIs for managing apartments stored in a PostgreSQL database.
+- The database runs inside a Docker container and is automatically created and seeded on startup.
 
-Pagination: Navigate through pages of apartments, with proper pagination controls.
+Database:
+The PostgreSQL database stores apartment details including:
 
-Add New Apartments: Toggle the form to add new apartments and submit data to the database.
+- name
 
-Backend
-The backend of this application is powered by a PostgreSQL database running inside a Docker container. The database is initialized using an SQL script (init.sql), which creates the necessary schema and populates it with initial data.
+- unitnumber
 
-Database (nawy): This contains the tables for apartments, projects, and relevant relationships.
+- project
 
-APIs: The backend APIs allow fetching apartments based on specific filters such as apartment ID, name, or project ID. These APIs support searching, pagination, and CRUD operations for apartments.
+- price
 
-The database is containerized using Docker and managed via Docker Compose. This setup ensures that the backend service is easily portable and scalable.
+- description
 
-Frontend Explanation
-The frontend is a React application designed to manage apartments and projects. It provides the following features:
+- imageurl
 
-Search Functionality: Users can search for apartments by name or ID. The frontend checks if the search query is numeric (for apartment IDs) or a string (for apartment names) and calls the appropriate API.
+- bedrooms
 
-Project Filter: A dropdown allows users to filter apartments by project. When a project is selected, only the apartments associated with that project are shown. The user can also clear the filter.
+- bathrooms
 
-Apartment Listing: Apartments are displayed in a grid layout. Each apartment is represented as a card that shows its details.
+- area
 
-Pagination: The frontend supports pagination, allowing users to navigate through different pages of apartments.
+- location
 
-Add Apartment Form: The frontend includes a form to add new apartments. The form can be toggled and submitted to the backend to create new apartments.
+- date_posted
 
-The frontend uses React Hooks (useState, useEffect) for state management and API calls. It also uses Axios or similar libraries to fetch data from the backend APIs.
+- Tables are created at runtime using createTables.ts.
+
+- Initial mock data is inserted using mockData.ts.
+
+APIs:
+
+- GET /api/apartments
+  Returns all apartments sorted by newest first.
+
+- GET /api/apartments/:id
+  Returns a single apartment by ID.
+
+- POST /api/apartments
+  Creates a new apartment with image upload and validation.
+
+- The backend uses multer to handle image uploads and serves uploaded files from the /uploads directory.
+
+Docker Integration:
+
+- The backend connects to the PostgreSQL database using environment variables defined in docker-compose.
+
+Frontend Explanation:
+The frontend is a Next.js 16 application with the following features:
+
+- Filtering: Search bar, project dropdown, bedroom and bathroom selectors, and price slider.
+- Sorting: Dropdown for sorting by price, area, or date.
+- Apartment Details Page: A page showing full apartment information.
+- Image Handling: All images are rendered using the Next.js Image component.
+- Add Apartment Dialog: A modal allows creating new apartments with validation.
+- Mobile Support: Navigation and forms adapt to mobile layouts.
 
 Running the App Locally
-After following the steps to set up the app using Docker, you can access the app locally by navigating to http://localhost:3000 in your browser.
+Once Docker has finished building and starting the containers, access the application at:
 
-You should be able to see the apartment listing, search, pagination, and project filtering features working as expected.
+- [http://localhost:3000](http://localhost:3000)
+
+The app will display apartment listings and allow filtering, sorting, and adding new apartments, including image uploads saved in the backend uploads directory.
+
+---
+
+If you want, I can convert this into a **proper GitHub-ready README.md** with markdown formatting + emojis.
