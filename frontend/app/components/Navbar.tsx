@@ -38,7 +38,7 @@ export default function Navbar() {
 
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
 
-  // Handle image
+  
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -48,8 +48,7 @@ export default function Navbar() {
     setForm((prev) => ({ ...prev, imageurl: preview }));
   };
 
-  // Validation
- // Validation
+
 const validate = () => {
   const newErrors: any = {};
 
@@ -57,7 +56,7 @@ const validate = () => {
   if (!form.unitnumber.trim()) newErrors.unitnumber = "Unit number is required.";
   if (!form.project.trim()) newErrors.project = "Project is required.";
 
-  // PRICE VALIDATION
+ 
   if (!form.price.trim()) {
     newErrors.price = "Price is required.";
   } else {
@@ -69,7 +68,6 @@ const validate = () => {
 
   if (!form.description.trim()) newErrors.description = "Description is required.";
 
-  // BEDROOMS VALIDATION
   if (!form.bedrooms.trim()) {
     newErrors.bedrooms = "Bedrooms is required.";
   } else {
@@ -78,7 +76,6 @@ const validate = () => {
     else if (val > 10) newErrors.bedrooms = "Bedrooms cannot exceed 10.";
   }
 
-  // BATHROOMS VALIDATION
   if (!form.bathrooms.trim()) {
     newErrors.bathrooms = "Bathrooms is required.";
   } else {
@@ -87,7 +84,6 @@ const validate = () => {
     else if (val > 10) newErrors.bathrooms = "Bathrooms cannot exceed 10.";
   }
 
-  // AREA VALIDATION
   if (!form.area.trim()) {
     newErrors.area = "Area is required.";
   } else {
@@ -105,7 +101,6 @@ const validate = () => {
 };
 
 
-  // Submit
   const handleSubmit = async () => {
     if (!validate()) return;
 
@@ -154,7 +149,7 @@ const validate = () => {
   return (
     <nav className="sticky top-0 z-50 bg-white border-b shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo */}
+        
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/nawy-removebg-preview.png"
@@ -166,7 +161,7 @@ const validate = () => {
         </Link>
 
         <div className="flex items-center gap-4">
-          {/* ADD FORM */}
+          {/* ADD Apartment FORM */}
           <Dialog>
             <DialogTrigger asChild>
               <Button
@@ -296,7 +291,7 @@ const validate = () => {
             </DialogContent>
           </Dialog>
 
-          {/* SUCCESS DIALOG */}
+       
           <Dialog open={successDialogOpen} onOpenChange={setSuccessDialogOpen}>
             <DialogContent className="max-w-md text-center">
               <DialogHeader>

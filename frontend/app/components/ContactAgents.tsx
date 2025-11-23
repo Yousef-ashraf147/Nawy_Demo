@@ -6,12 +6,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"; // or Radix Dialog if Shadcn not installed
+} from "@/components/ui/dialog"; 
 import { Button } from "@/components/ui/button";
 
+
+//Sample agents array
 const agents = [
-  { name: "Youssef Ashraf", email: "Yoyo@gmail.com", phone: "+20 123 456 789" },
-  { name: "Sarah Saeed", email: "sarah.saeed@ALBY.com", phone: "+20 987 654 321" },
+  { name: "Youssef Ashraf", email: "YousefAshraf147@gmail.com", phone: "+20 123 456 789" },
+  { name: "Sarah Saeed", email: "sarah.saeed@gmail.com", phone: "+20 987 654 321" },
 ];
 
 export default function ContactAgents() {

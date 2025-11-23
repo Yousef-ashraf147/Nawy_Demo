@@ -18,7 +18,7 @@ export default function Footer() {
     <footer className="bg-white border-t mt-16 py-10">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
 
-        {/* Logo */}
+       
         <div className="flex items-center gap-2">
           <Image
             src="/nawy-removebg-preview.png"

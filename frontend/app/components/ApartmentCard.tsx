@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { LuBedDouble, LuBath, LuRuler } from "react-icons/lu";
 
-// Format date → “Posted 2 days ago”
 function formatPostedDate(dateString: string) {
   const posted = new Date(dateString);
   const now = new Date();
@@ -44,7 +43,7 @@ export default function ApartmentCard({
     <Link href={`/apartment/${id}`}>
       <div className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 p-4 cursor-pointer hover:-translate-y-1">
 
-        {/* Image */}
+       
         <div className="w-full h-48 rounded-lg mb-4 overflow-hidden bg-gray-100">
           <Image
             src={
