@@ -80,6 +80,55 @@ The frontend is a Next.js 16 application with the following features:
 - Add Apartment Dialog: A modal allows creating new apartments with validation.
 - Mobile Support: Navigation and forms adapt to mobile layouts.
 
+Running the App Locally Without Docker
+To run the application without Docker, follow these steps:
+
+Backend Setup:
+
+1. Navigate to the backend directory:
+
+   - cd backend
+
+2. Install dependencies:
+
+   - npm install
+
+3. Make sure PostgreSQL is installed and running on your system.
+4. Create a database manually using a tool such as pgAdmin or psql:
+
+   - CREATE DATABASE apartmentsdb1;
+
+5. Update the database credentials in backend/src/config/database.ts if needed.
+6. Start the backend server:
+
+   - npx ts-node src/server.ts
+     or if compiled:
+   - npm run build
+   - node dist/server.js
+
+Frontend Setup:
+
+1. Navigate to the frontend directory:
+
+   - cd frontend
+
+2. Install dependencies:
+
+   - npm install
+
+3. Create a .env.local file and set:
+
+   - NEXT_PUBLIC_API_BASE=[http://localhost:5000](http://localhost:5000)
+
+4. Start the frontend development server:
+
+   - npm run dev
+
+Accessing the App:
+
+- Open [http://localhost:3000](http://localhost:3000) in the browser.
+- The frontend will communicate with the backend at [http://localhost:5000](http://localhost:5000).
+
 Running the App Locally
 Once Docker has finished building and starting the containers, access the application at:
 
