@@ -4,7 +4,7 @@
    - docker-compose up --build
      This command builds the frontend, backend, and database images and starts all containers.
 
-Project Overview
+Project Overview : 
 This project is a full-stack apartment listing application. It provides the ability to view, search, filter, sort, and add apartments. The system includes a backend API built with Node.js, Express, and PostgreSQL, and a frontend built with Next.js and React. Both components are containerized and run together using Docker.
 
 Features:
