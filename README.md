@@ -1,168 +1,48 @@
-🏡 Nawy Demo – Full-Stack Apartment Listing Application
+1. Build and Start the App with Docker
+Run the following command to build and start the application using Docker Compose: docker-compose up --build
+This will build the necessary images for your app and bring up the required containers, including the database.
 
-Nawy Demo is a complete full-stack real estate listing platform built with Next.js, Express.js (TypeScript), PostgreSQL, and Docker Compose.
-It includes apartment listing, filtering, sorting, image uploads, and detailed pages.
+Project Overview
+This application is designed to manage apartments and projects, providing functionalities such as:
 
-✨ Features
-🎨 Frontend (Next.js + Tailwind + shadcn/ui)
+Apartment Management: You can add, search, and view apartments.
 
-Modern responsive UI
+Project Management: Filter apartments by project and manage apartment data based on project selection.
 
-Apartment grid listing
+Features
+Apartment Search: Search for apartments by ID or name.
 
-Search by name, unit number, or project
+Project Filter: Filter apartments based on a specific project.
 
-Advanced filters:
+Pagination: Navigate through pages of apartments, with proper pagination controls.
 
-Price range slider
+Add New Apartments: Toggle the form to add new apartments and submit data to the database.
 
-Bedrooms / bathrooms
+Backend
+The backend of this application is powered by a PostgreSQL database running inside a Docker container. The database is initialized using an SQL script (init.sql), which creates the necessary schema and populates it with initial data.
 
-Project filter
+Database (nawy): This contains the tables for apartments, projects, and relevant relationships.
 
-Sorting by price, area, and date
+APIs: The backend APIs allow fetching apartments based on specific filters such as apartment ID, name, or project ID. These APIs support searching, pagination, and CRUD operations for apartments.
 
-Automatic “New” badge for recently posted apartments
+The database is containerized using Docker and managed via Docker Compose. This setup ensures that the backend service is easily portable and scalable.
 
-Add Apartment modal form with validation
+Frontend Explanation
+The frontend is a React application designed to manage apartments and projects. It provides the following features:
 
-Image preview before upload
+Search Functionality: Users can search for apartments by name or ID. The frontend checks if the search query is numeric (for apartment IDs) or a string (for apartment names) and calls the appropriate API.
 
-Fully mobile-friendly
+Project Filter: A dropdown allows users to filter apartments by project. When a project is selected, only the apartments associated with that project are shown. The user can also clear the filter.
 
-⚙️ Backend (Express + TypeScript)
+Apartment Listing: Apartments are displayed in a grid layout. Each apartment is represented as a card that shows its details.
 
-REST API endpoints:
+Pagination: The frontend supports pagination, allowing users to navigate through different pages of apartments.
 
-GET /api/apartments
+Add Apartment Form: The frontend includes a form to add new apartments. The form can be toggled and submitted to the backend to create new apartments.
 
-GET /api/apartments/:id
+The frontend uses React Hooks (useState, useEffect) for state management and API calls. It also uses Axios or similar libraries to fetch data from the backend APIs.
 
-POST /api/apartments
+Running the App Locally
+After following the steps to set up the app using Docker, you can access the app locally by navigating to http://localhost:3000 in your browser.
 
-PostgreSQL integration with pooled connections
-
-Multer-based image upload handling
-
-Auto-create tables on startup
-
-Auto-seed mock data
-
-date_posted stored for sorting and UI badges
-
-🗄️ Database (PostgreSQL)
-
-Runs inside Docker
-
-Persistent storage via Docker volumes
-
-Auto-initialized on first run
-
-🛠️ DevOps
-
-Fully containerized with Docker Compose
-
-One command to spin up the entire stack
-
-Environment variables supported
-
-Backend + Frontend both run inside containers
-
-🚀 Running the Application
-Step 1 — Build & Start Everything
-
-From the project root:
-
-docker-compose up --build
-
-Docker will:
-
-Build backend and frontend images
-
-Start PostgreSQL
-
-Launch all services
-
-URLs
-
-Frontend → http://localhost:3000
-
-Backend API → http://localhost:5000/api
-
-Uploaded Images → http://localhost:5000/uploads/
-<filename>
-
-📁 Project Structure
-Nawy_Demo/
-│
-├── backend/
-│ ├── src/
-│ ├── uploads/
-│ ├── Dockerfile
-│ └── tsconfig.json
-│
-├── frontend/
-│ ├── app/
-│ ├── components/
-│ ├── public/
-│ ├── Dockerfile
-│ └── next.config.js
-│
-└── docker-compose.yml
-
-🔧 Environment Variables
-Backend (backend/.env)
-PORT=5000
-BASE_URL=http://backend:5000
-DB_HOST=db
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=12345678
-DB_NAME=apartmentsdb1
-
-Frontend (frontend/.env.local)
-NEXT_PUBLIC_API_BASE=http://localhost:5000/api
-
-In Docker this becomes:
-
-NEXT_PUBLIC_API_BASE=http://backend:5000/api
-
-📡 API Endpoints
-Get All Apartments
-GET /api/apartments
-
-Get Apartment by ID
-GET /api/apartments/:id
-
-Add Apartment
-POST /api/apartments
-
-Required fields:
-
-name, unitnumber, project, price, area, bedrooms, bathrooms,
-location, description, image
-
-🖼️ Image Uploads
-
-Uploaded images are stored at:
-
-backend/uploads/
-
-Persisted with a Docker bind mount:
-
-./backend/uploads:/app/uploads
-
-🧪 Running Without Docker
-Backend:
-cd backend
-npm install
-npx ts-node src/server.ts
-
-Frontend:
-cd frontend
-npm install
-npm run dev
-
-📜 License
-
-MIT License.
+You should be able to see the apartment listing, search, pagination, and project filtering features working as expected.
