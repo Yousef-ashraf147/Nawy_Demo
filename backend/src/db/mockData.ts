@@ -61,7 +61,7 @@ export async function seedMockData() {
       bathrooms: 1,
       area: 140,
       location: "Madinaty, New Cairo",
-      date_posted: "2025-09-08T14:00:00Z",
+      date_posted: "2025-11-22T14:00:00Z",
     },
     {
       name: "Sodic Eastown",
@@ -89,7 +89,7 @@ export async function seedMockData() {
       bathrooms: 3,
       area: 210,
       location: "Lake View, New Cairo",
-      date_posted: "2025-11-15T11:00:00Z",
+      date_posted: "2025-11-12T11:00:00Z",
     },
     {
       name: "Hyde Park New Cairo",

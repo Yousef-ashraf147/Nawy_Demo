@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:14
+    container_name: nawy-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: apartmentsdb1
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    image: nawy-backend         # explicit image name (fixes your error)
+    build: ./backend
+    container_name: nawy-backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PORT: 5000
+      BASE_URL: http://localhost:5000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 12345678
+      DB_NAME: apartmentsdb1
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+  frontend:
+    image: nawy-frontend        # explicit image name
+    build: ./frontend
+    container_name: nawy-frontend
+    restart: always
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_BASE: http://backend:5000/api
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
