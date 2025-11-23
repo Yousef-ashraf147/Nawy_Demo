@@ -86,7 +86,3 @@ Once Docker has finished building and starting the containers, access the applic
 - [http://localhost:3000](http://localhost:3000)
 
 The app will display apartment listings and allow filtering, sorting, and adding new apartments, including image uploads saved in the backend uploads directory.
-
----
-
-If you want, I can convert this into a **proper GitHub-ready README.md** with markdown formatting + emojis.
