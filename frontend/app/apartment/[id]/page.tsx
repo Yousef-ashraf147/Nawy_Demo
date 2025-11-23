@@ -59,7 +59,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
         </Link>
       </div>
 
-      {/* Image */}
+    
       <div className="w-full h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-lg mb-8 relative">
         <Image
           src={apartment.imageurl}
@@ -69,7 +69,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
           className="object-cover object-center"
         />
 
-        {/* "NEW" Badge */}
+        {/* "NEW" Icon */}
         {isNew && (
   <div className="absolute top-4 left-4 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
     NEW
@@ -77,13 +77,13 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
 )}
 
 
-        {/* Gradient overlay */}
+       
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-2xl">
           <h1 className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
             {apartment.name}
           </h1>
 
-          {/* Project • Unit • Date */}
+         
           <div className="flex flex-wrap items-center gap-3 mt-2">
             <span className="text-white/90 text-sm">
               {apartment.project} • Unit {apartment.unitnumber}
@@ -97,7 +97,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
         </div>
       </div>
 
-      {/* Price + Contact */}
+     
       <div className="bg-white shadow-lg rounded-2xl p-8 mb-12">
         <div className="flex items-center justify-between mb-6">
           <p className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -114,7 +114,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
       {/* Details */}
       <div className="grid md:grid-cols-4 gap-6">
 
-        {/* Bedrooms */}
+     
         <div className="p-5 bg-gray-50 rounded-xl shadow hover:shadow-md transition flex items-center gap-4">
           <LuBedDouble className="w-6 h-6 text-gray-700" />
           <div>
@@ -123,7 +123,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
           </div>
         </div>
 
-        {/* Bathrooms */}
+      
         <div className="p-5 bg-gray-50 rounded-xl shadow hover:shadow-md transition flex items-center gap-4">
           <LuBath className="w-6 h-6 text-gray-700" />
           <div>
@@ -132,7 +132,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
           </div>
         </div>
 
-        {/* Area */}
+       
         <div className="p-5 bg-gray-50 rounded-xl shadow hover:shadow-md transition flex items-center gap-4">
           <LuRuler className="w-6 h-6 text-gray-700" />
           <div>
@@ -141,7 +141,7 @@ export default async function ApartmentPage({ params }: { params: Promise<{ id: 
           </div>
         </div>
 
-        {/* Location */}
+        
         <div className="p-5 bg-gray-50 rounded-xl shadow hover:shadow-md transition flex items-center gap-4">
           <LuMapPin className="w-6 h-6 text-gray-700" />
           <div>
